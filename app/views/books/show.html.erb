@@ -1,34 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, @book.title) %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
-
-<p>
-  <strong>Number of pages:</strong>
-  <%= @book.number_of_pages %>
-</p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @book.author %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @book.image %>
-</p>
-
-<p>
-  <strong>Published date:</strong>
-  <%= @book.published_date %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @book.status %>
-</p>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<div class="center">
+  <h1><%= @book.title %></h1>
+  <h4>by <%= @book.author %></h4>
+  <h4><%= @book.number_of_pages %> pages</h4>
+  <h4>Pulished: <%= @book.published_date.to_date %></h4>
+</div>

@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-	has_many :books
 	enum role: [:standard, :admin]
 	 after_initialize do
   	if self.new_record?
