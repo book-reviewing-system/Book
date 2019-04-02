@@ -15,13 +15,13 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create book" do
-    assert_difference('Book.count') do
-      post books_url, params: { book: { author: @book.author, image: @book.image, number_of_pages: @book.number_of_pages, published_date: @book.published_date, status: @book.status, title: @book.title } }
-    end
+  # test "should create book" do
+  #   assert_difference('Book.count') do
+  #     post books_url, params: { book: { author: @book.author, image: @book.image, number_of_pages: @book.number_of_pages, published_date: @book.published_date, status: @book.status, title: @book.title } }
+  #   end
 
-    assert_redirected_to book_url(Book.last)
-  end
+  #   assert_redirected_to book_url(Book.last)
+  # end
 
   test "should show book" do
     get book_url(@book)
@@ -33,10 +33,10 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update book" do
-    patch book_url(@book), params: { book: { author: @book.author, image: @book.image, number_of_pages: @book.number_of_pages, published_date: @book.published_date, status: @book.status, title: @book.title } }
-    assert_redirected_to book_url(@book)
-  end
+  # test "should update book" do
+  #   patch book_url(@book), params: { book: { author: @book.author, image: @book.image, number_of_pages: @book.number_of_pages, published_date: @book.published_date, status: @book.status, title: @book.title } }
+  #   assert_redirected_to book_url(@book)
+  # end
 
   test "should destroy book" do
     assert_difference('Book.count', -1) do
