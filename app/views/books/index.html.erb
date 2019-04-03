@@ -1,35 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Books</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Number of pages</th>
-      <th>Author</th>
-      <th>Published date</th>
-      <th>Category</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
-
   <tbody>
     <% @books.each do |book| %>
-      <tr>
-        <td><%= book.title %></td>
-        <td><%= book.number_of_pages %></td>
-        <td><%= book.author %></td>
-        <td><%= book.published_date %></td>
-        <td><%= book.category.name %></td>
-        <td><%= link_to 'Show', book %></td>
-        <!-- <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
- -->
-      </tr>
+        <p><%= book.title %> <%= "  ||by  " %><%= book.author %> <%= link_to '     Show', book %></p>
+        <!-- <td><%= book.author %></td> -->
     <% end %>
   </tbody>
 </table>
 
-<!-- <br>
-
-<%= link_to 'New Book', new_book_path %> -->
