@@ -19,21 +19,20 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1/edit
   def edit
+     @book = Book.find params[:book_id]
   end
 
   # POST /reviews
   # POST /reviews.json
   def create
-    @review = Review.new(review_params)
-
-    respond_to do |format|
-      if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
-      else
-        format.html { render :new }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
+    @book = Book.find params[:book_id]
+    @review = @book.reviews.build review_params
+    @review.user_id = current_user.id
+    if @review.save
+      flash[:success] = "Created"
+      redirect_to @book
+    else
+      render 'new'
     end
   end
 
@@ -70,5 +69,10 @@ class ReviewsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
       params.require(:review).permit(:rating, :comment)
+    end
+
+    def correct_user
+      @review = current_user.reviews.find_by_id params[:id]
+      redirect_to root_url if @review.nil?
     end
 end

@@ -13,9 +13,10 @@
     <li>
       <% user = review.user %>
       <%= link_to user.name, user %>
+      <p>Rating : <%= review.rating %> </p>
       <p>Comment : <%= review.comment %></p>
        at
-      <%= review.created_at.to_date %>      
+      <%= review.created_at.to_date %>     
     </li>
   <% end %>
 </ul>

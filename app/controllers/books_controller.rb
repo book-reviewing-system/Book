@@ -5,10 +5,9 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @categories = Category.all
+    #  @search = Book.search params[:q]
     @books = Book.all
-    @reviews=Review.all
     end
-
   # GET /books/1
   # GET /books/1.json
   def show
