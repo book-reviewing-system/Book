@@ -1,16 +1,24 @@
 body {
-  background-color: #fff;
+  background: url(http://istudyglobal.co/wp-content/uploads/2018/08/ombre-design-background-indigo-mural-ombre-background-design.jpg?fbclid=IwAR2ZjX5ChZGS40IzPX3zmVNWPmFRJWQhiSFDBmB_xHZ1n8fl6LVoty-sWCU) ;
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(0,0,0,1);
+  height: 100%; 
   color: #333;
-  margin: 33px;
+  margin: 50px;
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 20px;
   line-height: 18px;
 }
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 pre {
@@ -76,6 +84,7 @@ div {
   ul li {
     font-size: 12px;
     list-style: square;
+    color: #000000;
   }
 }
 

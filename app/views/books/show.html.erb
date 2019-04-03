@@ -1,11 +1,9 @@
 <% provide(:title, @book.title) %>
- <h1><%= @book.title %></h1>
 <div class="left">
- 
-  <p>by <%= @book.author %></p>
-  <p><%= @book.number_of_pages %> pages</p>
-  <p>Category: <%= @book.category.name%></p>
-  <p>Pulished: <%= @book.published_date.to_date %></p>
+  <h7><%= @book.title %></h7>
+  <h4>by <%= @book.author %></h4>
+  <h4><%= @book.number_of_pages %> pages</h4>
+  <h4>Published: <%= @book.published_date.to_date %></h4>
 </div>
 <div>Reviews</div>
 <ul class="users left">

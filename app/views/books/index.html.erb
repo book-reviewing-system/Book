@@ -1,11 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Books</h1>
+<h1>LIST BOOK</h1>
   <tbody>
     <% @books.each do |book| %>
-        <p><%= book.title %> <%= "  ||by  " %><%= book.author %> <%= link_to '     Show', book %></p>
-        <!-- <td><%= book.author %></td> -->
+        <p><%= book.title %> <%= "    ||    " %><%= book.author %></p>
+        <p> <%= link_to '     Show', book %></p>
     <% end %>
   </tbody>
 </table>
-
