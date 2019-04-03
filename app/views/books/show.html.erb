@@ -7,3 +7,15 @@
   <p>Category: <%= @book.category.name%></p>
   <p>Pulished: <%= @book.published_date.to_date %></p>
 </div>
+<div>Reviews</div>
+<ul class="users left">
+  <% @book.reviews.each do |review| %>
+    <li>
+      <% user = review.user %>
+      <%= link_to user.name, user %>
+      <p>Comment : <%= review.comment %></p>
+       at
+      <%= review.created_at.to_date %>      
+    </li>
+  <% end %>
+</ul>

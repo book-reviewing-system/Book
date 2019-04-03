@@ -6,7 +6,8 @@ class BooksController < ApplicationController
   def index
     @categories = Category.all
     @books = Book.all
-  end
+    @reviews=Review.all
+    end
 
   # GET /books/1
   # GET /books/1.json
