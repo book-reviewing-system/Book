@@ -1,5 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url("bootstrap.min.css");
+@import url("bootstrap-theme.css");
 body {
   padding-top: px;
 }
@@ -20,19 +22,17 @@ textarea {
   margin-bottom: 10px;
 }
 
-h1, h2, h3, h4, h5, h6, h7 {
+h1, h2, h3, h4, h5, h6 {
   line-height: 2;
 }
 
 h1 {
+  text-align: center;
   font-size: 3em;
   font-family: "Times New Roman", Times, serif;
   letter-spacing: 4px;
   margin: 10px auto 10px auto;
   margin-bottom: 10px;
-  text-align: center;
-  color:  #FF0000;
-  text-shadow: 0 0 150px #FFFF00, 0 0 60px #FFA500, 0 0 10px #FF0000;
 }
 
 h2 {
@@ -56,7 +56,7 @@ h7 {
 p {
   font-size: 2em;
   line-height: 1.7em;
-  color: #5F9EA0;
+  color: #2F4F4F;
 }
 #logo {
   float: left;
@@ -95,6 +95,7 @@ footer small {
 }
 
 footer ul {
+color: #FF4500;
   float: right;
   list-style: none;
 }
@@ -102,6 +103,7 @@ footer ul {
 footer ul li {
   float: left;
   margin-left: 15px;
+
 }
 
 aside {
@@ -206,5 +208,20 @@ form.example::after {
 .navbar-inverse {
     background-color: #f8f8f8;
     border-color: #090909;
-} 
+}
+.btn-search {
+    background: #424242;
+    border-radius: 0;
+    color: #fff;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #1c1c1c;
+  }
+  .btn-search:link, .btn-search:visited {
+    color: #fff;
+  }
+  .btn-search:active, .btn-search:hover {
+    background: #1c1c1c;
+    color: #fff;
+  }
 }
