@@ -1,10 +1,16 @@
-<p id="notice"><%= notice %></p>
 
-<h1>LIST BOOK</h1>
-  <tbody>
-    <% @books.each do |book| %>
-        <p><%= book.title %> <%= "    ||    " %><%= book.author %></p>
-        <p> <%= link_to '     Show', book %></p>
-    <% end %>
-  </tbody>
-</table>
+ <h1>LIST BOOK</h1>
+<div class="container">
+	
+	<div class="row">
+		<% @books.each do |book| %>
+			<div class="col-sm-6 col-md-4">
+				<div class="test">
+				<p><%= book.title %> <%= "    ||    " %><%= book.author %></p> 
+				</div>
+				
+        		<p> <%= link_to 'Show', book %></p>
+			</div>
+		<% end %>
+		</div>
+</div>
