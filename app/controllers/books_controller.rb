@@ -20,6 +20,7 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
+    @review = Review.find(params[:id])
   end
 
   # POST /books

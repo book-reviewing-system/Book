@@ -14,7 +14,12 @@
       <p>Rating : <%= review.rating %> </p>
       <p>Comment : <%= review.comment %></p>
        at
-      <%= review.created_at.to_date %>     
+      <%= review.created_at.to_date %>    
+      <% if user == current_user %>
+        <%= link_to "edit", edit_book_review_path(@book, review) %>
+        <%= link_to "delete", book_review_path(@book, review), method: :delete, 
+          confirm: "Are you sure?" %>
+      <% end %> 
     </li>
   <% end %>
 </ul>

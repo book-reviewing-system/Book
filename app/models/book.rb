@@ -1,4 +1,5 @@
 class Book < ApplicationRecord
+	RATINGS = [1, 2, 3, 4, 5]
 	belongs_to :category
 	has_many :reviews
 	validates :number_of_pages, presence: true

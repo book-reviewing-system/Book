@@ -5,6 +5,7 @@ class ReviewsController < ApplicationController
   # GET /reviews.json
   def index
     @reviews = Review.all
+    @user =User.all
   end
 
   # GET /reviews/1
@@ -19,7 +20,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1/edit
   def edit
-     @book = Book.find params[:book_id]
+   @book = Book.find(params[:book_id])
   end
 
   # POST /reviews
@@ -39,26 +40,37 @@ class ReviewsController < ApplicationController
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
   def update
-    respond_to do |format|
-      if @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
-        format.json { render :show, status: :ok, location: @review }
-      else
-        format.html { render :edit }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
+    # respond_to do |format|
+    #   if @review.update(review_params)
+    #     format.html { redirect_to @review, notice: 'Review was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @review }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @review.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
+    if @review.update_attributes review_params
+      flash[:success] = "Updated"
+      redirect_to book_path(@review.book)
+    else
+      render 'edit'
     end
   end
 
   # DELETE /reviews/1
   # DELETE /reviews/1.json
   def destroy
-    @review.destroy
+   @review.destroy
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
+      format.html { redirect_to book_path(@review.book), notice: 'Review was successfully destroyed.' }
       format.json { head :no_content }
-    end
+   #  end
+   # review.destroy
+   #  flash[:success] = "Deleted"
+   #  redirect_to root_path
   end
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -69,10 +81,5 @@ class ReviewsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
       params.require(:review).permit(:rating, :comment)
-    end
-
-    def correct_user
-      @review = current_user.reviews.find_by_id params[:id]
-      redirect_to root_url if @review.nil?
     end
 end

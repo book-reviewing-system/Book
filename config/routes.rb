@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
-  resources :reviews
+  
   resources :categories
   get 'sessions/new'
-  resources :books
+  resources :books do
+    resources :reviews
+  end
+
+  # resources :reviews
   resources :users
   # get 'static_pages/home'
   # get 'static_pages/help'
   # get 'static_pages/about'
+  get '/books/:id', to: 'books#show' 
   root 'books#index'
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
