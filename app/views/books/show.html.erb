@@ -1,11 +1,20 @@
 <% provide(:title, @book.title) %>
-<div class="left">
+<div class="center">
   <h7><%= @book.title %></h7>
   <h4>by <%= @book.author %></h4>
-  <h4><%= @book.number_of_pages %> pages</h4>
-  <h4>Published: <%= @book.published_date.to_date %></h4>
 </div>
+<div class="left">
+  <h4>Number of pages: <%= @book.number_of_pages %></h4>
+  <h4>Published: <%= @book.published_date.to_date %></h4>
+  <h4>Status: <%= @book.status %></h4>
+</div>
+ <% if logged_in? %>
+<%= link_to 'Add A Review', new_book_review_path(@book), method: :get %> 
+<% else %>
+  <%= link_to "Signin to review", login_path %>
+<% end %>
 <div>Reviews</div>
+
 <ul class="users left">
   <% @book.reviews.each do |review| %>
     <li>
@@ -17,9 +26,9 @@
       <%= review.created_at.to_date %>    
       <% if user == current_user %>
         <%= link_to "edit", edit_book_review_path(@book, review) %>
-        <%= link_to "delete", book_review_path(@book, review), method: :delete, 
-          confirm: "Are you sure?" %>
+        <%= link_to "delete", book_review_path(@book, review), confirm: "Are you sure?",method: :delete        %>
       <% end %> 
     </li>
   <% end %>
 </ul>
+<p> <%= link_to ' Back', root_path %></p>

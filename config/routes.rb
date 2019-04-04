@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   resources :books do
     resources :reviews
   end
-
-  # resources :reviews
+  resources :reviews
   resources :users
   # get 'static_pages/home'
   # get 'static_pages/help'

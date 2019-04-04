@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
-
+  # before_action :correct_user, only: [:edit, :update, :destroy]
   # GET /reviews
   # GET /reviews.json
   def index
@@ -15,7 +15,9 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
+    @book = Book.find(params[:book_id])
     @review = Review.new
+
   end
 
   # GET /reviews/1/edit
@@ -26,7 +28,7 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @book = Book.find params[:book_id]
+     @book = Book.find params[:book_id]
     @review = @book.reviews.build review_params
     @review.user_id = current_user.id
     if @review.save
@@ -82,4 +84,9 @@ end
     def review_params
       params.require(:review).permit(:rating, :comment)
     end
+
+    # def correct_user
+    #   @review = current_user.reviews.find_by_id params[:id]
+    #   redirect_to root_url if @review.nil?
+    # end
 end
