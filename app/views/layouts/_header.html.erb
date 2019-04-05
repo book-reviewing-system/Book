@@ -14,9 +14,11 @@
           <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
           <li>
-            <%= link_to "Log out", logout_path, method: :delete %>
-          </li>
+            <li> <%= link_to "Books", root_path%></li>
+            <li><%= link_to "Log out", logout_path, method: :delete %></li>
+          </li>          
           <%else %>
+          <li> <%= link_to "Books", root_path%></li>
           <li><%= link_to "Sign up", signup_path %></li>
           <li><%= link_to "Sign in",login_path %></li>
           <% end %>
