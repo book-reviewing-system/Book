@@ -5,7 +5,7 @@ class User < ApplicationRecord
     self.role ||= :standard
   end
   end
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   has_many :activities
   before_save { self.email = email.downcase }
   validates :name,  presence: true, length: { maximum: 50 }
@@ -24,5 +24,5 @@ class User < ApplicationRecord
   def is_admin?
     self.role.label == "admin"
   end
-  
+
 end
