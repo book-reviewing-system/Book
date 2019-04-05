@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :activities
   resources :categories
   get 'sessions/new'
   resources :books do
