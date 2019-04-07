@@ -7,11 +7,12 @@ Rails.application.routes.draw do
     resources :reviews
   end
   resources :reviews
-  resources :users
-  # get 'static_pages/home'
-  # get 'static_pages/help'
-  # get 'static_pages/about'
-  get '/books/:id', to: 'books#show' 
+  resources :users do
+    member do
+      get :following, :followers
+      end
+     end    
+  resources :relationships,       only: [:create, :destroy]
   root 'books#index'
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'

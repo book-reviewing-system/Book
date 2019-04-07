@@ -15,17 +15,13 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-<<<<<<< HEAD
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-=======
->>>>>>> 7c13d811bafc0bad5c61ff48cd86b01ba8fad50a
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
-<%= link_to 'New User', new_user_path %>
+
 <% else %>
 <div class="row">
   <aside class="col-md-4">
@@ -33,8 +29,14 @@
       <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
-      </h1>
+      </h1>  
     </section>
+     <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
   </aside>
+   <div class="col-md-8">
+    <%= render 'follow_form' if logged_in? %></div>
 </div>
 <% end %>
+
