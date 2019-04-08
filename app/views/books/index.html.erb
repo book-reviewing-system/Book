@@ -1,8 +1,13 @@
-
- <h1>LIST BOOK</h1>
+<%= form_tag(books_path, method: :get) do %>
+<%= text_field_tag :term, params[:term] %>
+<%= submit_tag 'Search', name: nil %>
+<% end %>
+<h1> LIST BOOK </h1>
+<% if @books.blank? %>
+<h3> NO BOOKS </h3>
+<% end %>
 <%= link_to 'Add Book', new_book_path %>
 <div class="container">
-	
 	<div class="row">
 		<% @books.each do |book| %>
 			<div class="col-sm-6 col-md-4">
