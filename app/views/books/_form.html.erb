@@ -15,32 +15,30 @@
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
+  <div class="field">
+    <%= form.label :category %>
+  <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select a category") %></div>
 
   <div class="field">
     <%= form.label :number_of_pages %>
     <%= form.number_field :number_of_pages %>
   </div>
-
   <div class="field">
     <%= form.label :author %>
     <%= form.text_field :author %>
   </div>
-
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.text_field :image %>
-  </div>
-
   <div class="field">
     <%= form.label :published_date %>
-    <%= form.datetime_select :published_date %>
+    <%= form.date_select :published_date %>
   </div>
-
-  <div class="field">
+<!--   <div class="field">
     <%= form.label :status %>
-    <%= form.number_field :status %>
-  </div>
-
+    <select name="status">
+      <option value="0" >available</option>
+      <option value="1">non-available</option>
+     </select>
+   </div> -->
+  
   <div class="actions">
     <%= form.submit %>
   </div>

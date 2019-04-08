@@ -1,16 +1,25 @@
 
  <h1>LIST BOOK</h1>
+<%= link_to 'Add Book', new_book_path %>
 <div class="container">
 	
 	<div class="row">
 		<% @books.each do |book| %>
 			<div class="col-sm-6 col-md-4">
-				<div class="test">
-				<p><%= book.title %> <%= "    ||    " %><%= book.author %></p> 
-				</div>
-				
+				<div class="test">				 
+				<% if current_user && current_user.admin? %>				
+				<p><%= book.title %> <%= "    ||    " %><%= book.author %></p>
+				<p><%= link_to 'Edit', edit_book_path(book) %>
+					<%= link_to ' Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %><%= link_to '   Show', book %>
+				</p>
+        		<% else %>
+        		<p><%= book.title %> <%= "    ||    " %><%= book.author %></p>
         		<p> <%= link_to 'Show', book %></p>
+        		</div>
+				      		
 			</div>
 		<% end %>
 		</div>
 </div>
+<% end %>
+

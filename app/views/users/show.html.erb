@@ -1,28 +1,4 @@
 <p id="notice"><%= notice %></p>
-<% if current_user && current_user.admin? %>
-<h1>User</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-
-<% else %>
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
