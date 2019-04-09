@@ -8,7 +8,7 @@ class BooksController < ApplicationController
     #  @search = Book.search params[:q]
     #@books = Book.all
     @books = if params[:term]
-      Book.where('title LIKE ?',"%#{params[:term]}%")
+      Book.where('title LIKE ? ',"%#{params[:term]}%")
     else
       Book.all
    end

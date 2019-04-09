@@ -1,0 +1,47 @@
+<%= form_with(model: user_book, local: true) do |form| %>
+  <% if user_book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_book.errors.count, "error") %> prohibited this user_book from being saved:</h2>
+
+      <ul>
+      <% user_book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :book_id %>
+    <%= form.number_field :book_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :read %>
+    <%= form.number_field :read %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reading %>
+    <%= form.number_field :reading %>
+  </div>
+
+  <div class="field">
+    <%= form.label :favorite %>
+    <%= form.number_field :favorite %>
+  </div>
+
+  <div class="field">
+    <%= form.label :request %>
+    <%= form.number_field :request %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Book:</strong>
+  <%= @user_book.book_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_book.user_id %>
+</p>
+
+<p>
+  <strong>Read:</strong>
+  <%= @user_book.read %>
+</p>
+
+<p>
+  <strong>Reading:</strong>
+  <%= @user_book.reading %>
+</p>
+
+<p>
+  <strong>Favorite:</strong>
+  <%= @user_book.favorite %>
+</p>
+
+<p>
+  <strong>Request:</strong>
+  <%= @user_book.request %>
+</p>
+
+<%= link_to 'Edit', edit_user_book_path(@user_book) %> |
+<%= link_to 'Back', user_books_path %>

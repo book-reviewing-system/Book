@@ -3,17 +3,29 @@
   <h7><%= @book.title %></h7>
   <h4>by <%= @book.author %></h4>
 </div>
-<div class="left">
-  <h4>Category: <%= @book.category.name %></h4>
-  <h4>Number of pages: <%= @book.number_of_pages %></h4>
-  <h4>Published: <%= @book.published_date.to_date %></h4>
-  
-</div>
- <% if logged_in? %>
+ <% if logged_in? %> 
 <%= link_to 'Add A Review', new_book_review_path(@book), method: :get %> 
+<div class="center">
+    <% @user_book = @book.user_books.find_by_user_id current_user.id %>
+    <% if @user_book %>
+      <%= render "shared/update_favorite" %>
+      
+      <%= render "shared/update_read" %>
+
+    <% else %>
+      <%= render "shared/create_favorite" %>
+
+      <%= render "shared/create_read" %>
+    <% end %>
+   </div> 
 <% else %>
   <%= link_to "Signin to review", login_path %>
 <% end %>
+<div class="left">
+  <h4>Category: <%= @book.category.name %></h4>
+  <h4>Number of pages: <%= @book.number_of_pages %></h4>
+  <h4>Published: <%= @book.published_date.to_date %></h4>  
+</div>
 <div>Reviews</div>
 
 <ul class="users left">
