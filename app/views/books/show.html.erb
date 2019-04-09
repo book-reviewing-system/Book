@@ -33,14 +33,23 @@
     <li>
       <% user = review.user %>
       <%= link_to user.name, user %>
-      <p>Rating : <%= review.rating %> </p>
-      <p>Comment : <%= review.comment %></p>
+      <p1>Rating : <%= review.rating %> </p1>
+      <p1>Comment : <%= review.comment %></p1>
        at
       <%= review.created_at.to_date %>    
       <% if user == current_user %>
         <%= link_to "edit", edit_book_review_path(@book, review) %>
         <%= link_to "delete", book_review_path(@book, review), confirm: "Are you sure?",method: :delete        %>
       <% end %> 
+
+      <ul>
+        <div id="comments_<%= review.id %>">
+          <%= render review.comments %>
+        </div>
+        <% if logged_in? %>
+          <%= render "shared/comment_form", review: review %>
+        <% end %>
+      </ul>
     </li>
   <% end %>
 </ul>

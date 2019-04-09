@@ -1,16 +1,19 @@
 Rails.application.routes.draw do
   
   
+ 
   resources :activities
   resources :categories
   get 'sessions/new'
   resources :books do
-    resources :reviews
+    resources :reviews do
+       resources :comments
+     end
   end
   resources :books do
     resources :user_books
   end
-  resources :reviews
+  # resources :reviews
   resources :users do
     member do
       get :following, :followers

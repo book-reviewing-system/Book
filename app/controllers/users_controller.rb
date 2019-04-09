@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-   
+
     if(current_user && current_user.admin?)      
       @users = User.all
     else 
