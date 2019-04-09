@@ -40,6 +40,9 @@ class UserBooksController < ApplicationController
      if params[:read]
       @user_book = @book.user_books.build user_id: current_user.id, read: 1 
     end
+    if params[:reading]
+      @user_book = @book.user_books.build user_id: current_user.id, reading: 1 
+    end
     if params[:favorite]
       @user_book = @book.user_books.build user_id: current_user.id, favorite: 1
     end
@@ -71,6 +74,9 @@ class UserBooksController < ApplicationController
     @user_book = @book.user_books.find_by_user_id current_user.id
     if params[:read]
       @user_book.update_attributes read: params[:read]
+    end
+    if params[:reading]
+      @user_books.update_attributes reading: params[:reading]
     end
     if params[:favorite]
       @user_book.update_attributes favorite: params[:favorite]

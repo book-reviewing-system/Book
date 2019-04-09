@@ -1,6 +1,5 @@
-Rails.application.routes.draw do
-  
-  
+Rails.application.routes.draw do 
+ 
  
   resources :activities
   resources :categories
@@ -12,8 +11,10 @@ Rails.application.routes.draw do
   end
   resources :books do
     resources :user_books
+    resources :requests
   end
-  # resources :reviews
+  resources :requests
+  resources :reviews
   resources :users do
     member do
       get :following, :followers

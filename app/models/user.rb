@@ -5,6 +5,7 @@ class User < ApplicationRecord
     self.role ||= :standard
   end
   end
+  has_many :requests, dependent: :destroy
   has_many :user_books , dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :activities, dependent: :destroy

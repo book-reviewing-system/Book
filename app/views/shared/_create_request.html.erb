@@ -1,0 +1,6 @@
+<div class="create_request">
+  <% @request = @book.requests.build user_id: current_user.id %>
+  <%= form_for [@book, @request], remote: true do |f| %>
+    <%= f.submit "Request", class: "btn" %>
+  <% end %>
+</div>
