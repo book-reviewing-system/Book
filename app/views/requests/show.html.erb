@@ -10,9 +10,14 @@
   <%= @request.book_id %>
 </p>
 
-<p>
-  <strong>Accept:</strong>
-  <%= @request.accept %>
+<p><strong>Status:</strong>
+	<% if @request.approved? %>
+            <td>Yes   </td>
+          <% elsif @request.denied? %>
+            <td>No   </td>
+          <% else %>
+            <td>Waiting   </td>
+          <% end %>
 </p>
 
 <%= link_to 'Edit', edit_request_path(@request) %> |

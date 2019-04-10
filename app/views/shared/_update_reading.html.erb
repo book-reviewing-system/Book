@@ -1,8 +1,8 @@
 <div class="update_reading">
   <% if @user_book.reading? %>
-    <%= link_to "UnReading", book_user_book_path(book_id: @book.id, id: @book.id, reading: 0), method: :put, remote: true, class: "btn btn-primary" %>
+    <%= link_to "UnReading", book_user_book_path(book_id: @book.id, id: @user_book.id, reading: 0), method: :put, remote: true, class: "btn btn-primary" %>
   <% else %>
-    <%= link_to "Reading", book_user_book_path(book_id: @book.id, id: @book.id, 
+    <%= link_to "Reading", book_user_book_path(book_id: @book.id, id: @user_book.id, 
       reading: 1), method: :put, remote: true, class: "btn" %>
   <% end %>
 </div>

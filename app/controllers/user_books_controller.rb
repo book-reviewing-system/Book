@@ -24,19 +24,7 @@ class UserBooksController < ApplicationController
   # POST /user_books
   # POST /user_books.json
   def create
-    # @user_book = UserBook.new(user_book_params)
-
-    # respond_to do |format|
-    #   if @user_book.save
-    #     format.html { redirect_to @user_book, notice: 'User book was successfully created.' }
-    #     format.json { render :show, status: :created, location: @user_book }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @user_book.errors, status: :unprocessable_entity }
-    #   end
-    # end
-
-    @book = Book.find params[:id]
+    @book = Book.find params[:book_id]
      if params[:read]
       @user_book = @book.user_books.build user_id: current_user.id, read: 1 
     end
@@ -61,16 +49,7 @@ class UserBooksController < ApplicationController
   # PATCH/PUT /user_books/1
   # PATCH/PUT /user_books/1.json
   def update
-    # respond_to do |format|
-    #   if @user_book.update(user_book_params)
-    #     format.html { redirect_to @user_book, notice: 'User book was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @user_book }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @user_book.errors, status: :unprocessable_entity }
-    #   end
-    # end
-   
+    
     @book = Book.find params[:book_id]
     @user_book = @book.user_books.find_by id: params[:id]
     if params[:read]

@@ -76,10 +76,10 @@ ActiveRecord::Schema.define(version: 2019_04_09_134835) do
   create_table "user_books", force: :cascade do |t|
     t.integer "book_id"
     t.integer "user_id"
-    t.integer "read"
-    t.integer "reading"
-    t.integer "favorite"
-    t.integer "request"
+    t.integer "read", default: 0
+    t.integer "reading", default: 0
+    t.integer "favorite", default: 0
+    t.integer "request", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
