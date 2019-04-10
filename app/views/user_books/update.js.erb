@@ -1,2 +1,8 @@
-$(".update_favorite").html("<%= escape_javascript render 'shared/update_favorite' %>");
-$(".update_read").html("<%= escape_javascript render 'shared/update_read' %>");
+$(document).ready(function(){
+	$.ajax().done(function(){
+		$(".update_favorite").html("<%= escape_javascript render 'shared/update_favorite' %>")
+		$(".update_read").html("<%= escape_javascript render 'shared/update_read' %>")
+		$(".update_reading").html("<%= escape_javascript render 'shared/update_reading' %>")
+
+	})
+})

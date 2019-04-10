@@ -4,6 +4,7 @@ class RequestsController < ApplicationController
   # GET /requests
   # GET /requests.json
   def index
+
     @requests = Request.all
   end
 
@@ -19,6 +20,7 @@ class RequestsController < ApplicationController
 
   # GET /requests/1/edit
   def edit
+    @requests = Request.all
   end
 
   # POST /requests
@@ -49,6 +51,7 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1
   # PATCH/PUT /requests/1.json
   def update
+
     respond_to do |format|
       if @request.update(request_params)
         format.html { redirect_to @request, notice: 'Request was successfully updated.' }

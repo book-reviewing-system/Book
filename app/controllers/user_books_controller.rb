@@ -70,13 +70,14 @@ class UserBooksController < ApplicationController
     #     format.json { render json: @user_book.errors, status: :unprocessable_entity }
     #   end
     # end
-    @book = Book.find params[:id]
-    @user_book = @book.user_books.find_by_user_id current_user.id
+   
+    @book = Book.find params[:book_id]
+    @user_book = @book.user_books.find_by id: params[:id]
     if params[:read]
       @user_book.update_attributes read: params[:read]
     end
     if params[:reading]
-      @user_books.update_attributes reading: params[:reading]
+      @user_book.update_attributes reading: params[:reading]
     end
     if params[:favorite]
       @user_book.update_attributes favorite: params[:favorite]
@@ -84,11 +85,10 @@ class UserBooksController < ApplicationController
     if params[:request]
       @user_book.update_attributes request: params[:request]
     end
-    redirect_to @book
-    # respond_to do |format|
-    #   format.html{ redirect_to @book }
-    #   format.js
-    # end
+     respond_to do |format|
+      format.html{ redirect_to @book }
+      format.js
+     end
   end
   
 

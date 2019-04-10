@@ -10,11 +10,12 @@
     <% if @user_book %>   
       <%= render "shared/update_favorite" %>      
       <%= render "shared/update_read" %>
-
+      <%= render "shared/update_reading" %>
     <% else %>
     
       <%= render "shared/create_favorite" %>
       <%= render "shared/create_read" %>
+      <%= render "shared/create_reading" %>
     <% end %>
 
     <% @request = @book.requests.find_by_user_id current_user.id %>

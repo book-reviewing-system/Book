@@ -10,22 +10,14 @@
       </ul>
     </div>
   <% end %>
-
+  <% book = request.book %>
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :book_id %>
+    <%= form.label :Book %>
     <%= form.number_field :book_id %>
   </div>
-
-  <div class="field">
-    <%= form.label :accept %>
-    <%= form.number_field :accept %>
-  </div>
-
+  <div>
+  <%= form.label :accept %>
+ <%= form.select(:accept, options_for_select([['NO','0'],['YES','1'],['Waiting','2']]), {include_blank: true}) %> </div>
   <div class="actions">
     <%= form.submit %>
   </div>

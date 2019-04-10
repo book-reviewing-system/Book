@@ -6,6 +6,10 @@ class UserBook < ApplicationRecord
     read == 1
   end
 
+  def reading?
+    reading == 1
+  end   
+
   def favorite?
     favorite == 1
   end
