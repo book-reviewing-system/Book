@@ -14,9 +14,28 @@
    <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %></div>
    <div>
+   <table class="table">  
+  <h2>Favorites</h2>
+  <% if @user.user_books.blank? %> <h2> NO </h2>
+  <% else %>
+  <thead>
+      <td>Title</td>
+      <td>Author</td>
+    </thead>
+  <% @user.user_books.each do |user_book| %>
+    <% if user_book.favorite? %>
+    <tr>
+    <% book = user_book.book %>
+    <td><%= link_to book.title, book %></td>
+    <td><%= link_to book.author, book %></td>
+  </tr>
+  <% end %>
+  <% end %>
+  <% end %>  
+  </table> 
 <% if current_user?(@user) %>
   <table class="table">
-    <thead>Requested</thead>
+    <h2>Requested</h2>
     <thead>
       <td>Title</td>
       <td>Time</td>
@@ -41,7 +60,26 @@
     <% end %>
   </table>
 <% end %>
-
+<table class="table">
+    <h2>Reading history</h2>
+  <% if @user.user_books.blank? %> <h2>NO </h2>
+  <% else %>
+    <thead>
+      <td>Title</td>
+      <td>Author</td>
+    </thead>
+    <% @user.user_books.each do |user_book| %>
+    <% if user_book.reading? %>
+    <tr>
+    <% book = user_book.book %>
+    <td><%= link_to book.title, book %></td>
+    <td><%= link_to book.author, book %></td>
+  </tr>
+  <% end %>
+  <% end %>
+  <% end %>  
+  </table> 
+</div>
 
 
 
