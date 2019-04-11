@@ -1,12 +1,8 @@
-
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!--
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
--->
-
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<%= form_for [@book,@book.reviews.build] do |f| %>
+<h1>Editing Review</h1>
+<%= form_for [@book,@review] do |f| %>
 <div class="form-group" id="rating-ability-wrapper">
 	    <label class="control-label" for="rating">
 	    <span >RATE*</span><br>
@@ -47,11 +43,9 @@
 	$(".btnrating").on('click',(function(e) {
 	
 	var previous_value = $("#selected_rating").val();
-	
 	var selected_value = $(this).attr("data-attr");
 
 	$("#selected_rating").val(selected_value);
-	
 	$(".selected-rating").empty();
 	$(".selected-rating").html(selected_value);
 	
@@ -64,10 +58,9 @@
 	$("#rating-star-"+ix).toggleClass('btn-warning');
 	$("#rating-star-"+ix).toggleClass('btn-default');
 	}
-	
 	}));		
-});
-	</script>
+ 	});
+</script>
 <script> 
 	$(document).ready(function(){
  	$(".btnrating").click(function(){

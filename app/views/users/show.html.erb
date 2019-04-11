@@ -1,61 +1,45 @@
 <p id="notice"><%= notice %></p>
+<header>
 <div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>  
-    </section>
-     <section class="stats">
-        <%= render 'shared/stats' %>
-      </section>
-  </aside>
-   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %></div>
-   <div>
-   <table class="table">  
-  <h2>Favorites</h2>
-  <% if @user.user_books.blank? %> <h2> NO </h2>
-  <% else %>
-  <thead>
-      <td>Title</td>
-      <td>Author</td>
-    </thead>
-  <% @user.user_books.each do |user_book| %>
-    <% if user_book.favorite? %>
-    <tr>
-    <% book = user_book.book %>
-    <td><%= link_to book.title, book %></td>
-    <td><%= link_to book.author, book %></td>
-  </tr>
-  <% end %>
-  <% end %>
-  <% end %>  
-  </table> 
-<% if current_user?(@user) %>
+<aside class="col-md-4">
+<section class="user_info">
+  <h1>
+    <%= gravatar_for @user %>
+    <%= @user.name %>
+  </h1>  
+  </section>
+  <section class="stats">
+    <%= render 'shared/stats' %>
+  </section>
+</aside>
+<div class="col-md-8">
+    <%= render 'follow_form' if logged_in? %>
+</div>
+</header>
+<body>
+<div>
+  <% if current_user?(@user) %>
   <table class="table">
     <h2>Requested</h2>
     <thead>
-      <td>Title</td>
-      <td>Time</td>
-      <td>Status</td>
+      <th>Title</th>
+      <th>Time</th>
+      <th>Status</th>
     </thead>
     <% if @user.requests.any? %>
       <% @user.requests.each do |request| %>
-        <% book = request.book %>
-        <tr>
-          <td><%= link_to book.title, book %></td>
-          <td><%= request.created_at.to_date %></td>
-          <% if request.approved? %>
-            <td>Yes</td>
-          <% elsif request.denied? %>
+      <% book = request.book %>
+      <tr>
+        <td><%= link_to book.title, book %></td>
+        <td><%= request.created_at.to_date %></td>
+        <% if request.approved? %>
+          <td>Yes</td>
+        <% elsif request.denied? %>
             <td>No</td>
-          <% else %>
+        <% else %>
             <td>Waiting</td>
-          <% end %>
-          </td>
-        </tr>
+        <% end %>
+
       <% end %>
     <% end %>
   </table>
@@ -77,9 +61,26 @@
   </tr>
   <% end %>
   <% end %>
-  <% end %>  
-  </table> 
+  <% end %>
+<table class="table">  
+  <h2>Favorites</h2>
+    <% if @user.user_books.blank? %> <h2> NO </h2>
+    <% else %>
+    <thead>
+      <th>Title</th>
+      <th>Author</th>
+    </thead>
+    <% @user.user_books.each do |user_book| %>
+    <% if user_book.favorite? %>
+    <tr>
+      <% book = user_book.book %>
+      <td><%= link_to book.title, book %></td>
+      <td><%= link_to book.author, book %></td>
+    </tr>
+    <% end %>
+    <% end %>
+    <% end %>  
+  </table>   
+</table> 
 </div>
-
-
-
+</body>
