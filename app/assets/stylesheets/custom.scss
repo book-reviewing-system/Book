@@ -242,7 +242,33 @@ form.example::after {
 }
 
 p1 {
-  font-size: 1.7em;
+  font-size: 1.5em;
   line-height: 1.7em;
   color: #2F4F4F;
 }
+.rating-stars {
+  width: 100%;
+  text-align: center;
+}
+
+.rating-stars .rating-stars-container {
+  font-size: 0px;
+}
+
+.rating-stars .rating-stars-container .rating-star {
+  display: inline-block;
+  font-size: 32px;
+  color: #555555;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.rating-stars .rating-stars-container .rating-star.is--active,
+.rating-stars .rating-stars-container .rating-star.is--hover {
+  color: #f1c40f;
+}
+
+.rating-stars .rating-stars-container .rating-star.is--no-hover {
+  color: #555555;
+}
+

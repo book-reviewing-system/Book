@@ -33,15 +33,15 @@
   <h4>Number of pages: <%= @book.number_of_pages %></h4>
   <h4>Published: <%= @book.published_date.to_date %></h4>  
 </div>
-<div>Reviews</div>
+<h4>Reviews</h4>
 
 <ul class="users left">
   <% @book.reviews.each do |review| %>
     <li>
       <% user = review.user %>
       <%= link_to user.name, user %>
-      <p1>Rating : <%= review.rating %> </p1>
-      <p1>Comment : <%= review.comment %></p1>
+      <h4>Rating : <%= review.rating %> </h4>
+      <h4>Comment : <%= review.comment %></h4>
        at
       <%= review.created_at.to_date %>    
       <% if user == current_user %>
