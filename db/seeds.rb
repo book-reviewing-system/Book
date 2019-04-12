@@ -46,9 +46,3 @@ novels.each do |novel|
     published_date: DateTime.now.change(year: 2017)
   )
 end
-users = User.all
-user  = users.first
-following = users[2..15]
-followers = users[3..12]
-following.each { |followed| user.follow(followed) }
-followers.each { |follower| follower.follow(user) }
