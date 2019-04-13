@@ -1,5 +1,6 @@
 <%= form_tag(books_path, method: :get) do %>
 <%= text_field_tag :term, params[:term] %>
+<%= collection_select :category, :id, Category.all.order('name ASC'), :id, :name,{include_blank: 'Select Category'} %>
 <%= submit_tag 'Search', name: nil %>
 <% end %>
 <h1> LIST BOOK </h1>

@@ -8,63 +8,13 @@
       </h1>  
     </section>
     <section class="stats">
-        <%= render 'shared/stats' %>
-<<<<<<< HEAD
-      </section>
-  </aside>
-   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %></div>
-   <div>
-<h2>Activities</h2>
-<ul class="users">
-  <%= render @user.activities %> 
-</ul>    
-   <table class="table">  
-  <h2>Favorites</h2>
-  <% if @user.user_books.blank? %> <h2> NO </h2>
-  <% else %>
-  <thead>
-      <td>Title</td>
-      <td>Author</td>
-    </thead>
-  <% @user.user_books.each do |user_book| %>
-    <% if user_book.favorite? %>
-    <tr>
-    <% book = user_book.book %>
-    <td><%= link_to book.title, book %></td>
-    <td><%= link_to book.author, book %></td>
-  </tr>
-  <% end %>
-  <% end %>
-  <% end %>  
-  </table> 
-<% if current_user?(@user) %>
-  <table class="table">
-    <h2>Requested</h2>
-    <thead>
-      <td>Title</td>
-      <td>Time</td>
-      <td>Status</td>
-    </thead>
-    <% if @user.requests.any? %>
-      <% @user.requests.each do |request| %>
-        <% book = request.book %>
-        <tr>
-=======
-    </section>
-  </div>
-  <div class="col-sm-8">
-  </div>
-</div>
-<div class='row'>
-  <div class="col-sm-2">
+        <%= render 'shared/stats' %>      </section>
   </div>
   <div class="col-sm-8">
     <div>
       <h2>Activities</h2>
       <%= render @user.activities %>
     </div>
-    <div>
       <h2>Favorites</h2>
         <div class="table-responsive">
           <table class="table">
@@ -97,7 +47,6 @@
           <% if user_book.reading? %>
           <tr>
           <% book = user_book.book %>
->>>>>>> 595d84eed681661bb7c6c06fb0f381c3a50e493b
           <td><%= link_to book.title, book %></td>
           <td><%= link_to book.author, book %></td>
           </tr>
@@ -138,9 +87,7 @@
         </div>
       <% end %>
     </div>
-  </div>
-
-</div>
+ 
 
 
 

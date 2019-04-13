@@ -4,15 +4,22 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @categories = Category.all
+   #@categories = Category.all
     #  @search = Book.search params[:q]
     #@books = Book.all
-    @books = if params[:term]
-      Book.where('title LIKE ? ',"%#{params[:term]}%")
-    else
-      Book.all
-   end
-   end 
+   #  @books = if params[:term]
+   #    Book.where('title LIKE ? ',"%#{params[:term]}%")
+   #  else  
+   #    Book.all
+   # end 
+if params[:term]
+@books = Book.where('title LIKE ? ',"%#{params[:term]}%")
+elsif  params['category'].blank? or params['category']['id'].blank? 
+category = Category.find(params['category']['id']) 
+@books = category.books
+else  Book.all
+end
+end 
   
   # GET /books/1
   # GET /books/1.json
