@@ -18,8 +18,13 @@ class UserBook < ApplicationRecord
   end
 
   after_create :create_activity
+  #after_update :update_activity
  private
     def create_activity
       Activity.create(action: self, user: user)
     end
+
+    # def update_activity
+    #   Activity.create(action: self, user: user)
+    # end
 end

@@ -7,14 +7,15 @@ class Activity < ApplicationRecord
   end
 
   def commented?
-     self.action_type == "Comment"
+    self.action_type == "Comment"
   end
 
   def reviewed?
-    self.action_type == "Review"
+   self.action_type == "Review"
   end
 
   def marked?
     self.action_type == "UserBook"
+
   end
 end

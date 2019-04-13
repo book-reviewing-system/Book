@@ -16,7 +16,9 @@
   User.create(name: "User#{i}", email: "user#{i}@example.com",
     password: "password", password_confirmation: "password")
 end
-
+(1..9).each do 
+  Book.create(description: "GOOD EXPERIENCE")
+end
 categories = ["IT", "Sport", "Novel"]
 its = ["Rails", "Git", "MySQL"]
 sports = ["Badminton", "Volleyball", "Football"]
@@ -46,9 +48,9 @@ novels.each do |novel|
     published_date: DateTime.now.change(year: 2017)
   )
 end
-users = User.all
-user  = users.first
-following = users[2..15]
-followers = users[3..12]
-following.each { |followed| user.follow(followed) }
-followers.each { |follower| follower.follow(user) }
+# users = User.all
+# user  = users.first
+# following = users[2..15]
+# followers = users[3..12]
+# following.each { |followed| user.follow(followed) }
+# followers.each { |follower| follower.follow(user) }

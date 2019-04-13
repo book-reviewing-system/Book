@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_11_022547) do
+ActiveRecord::Schema.define(version: 2019_04_13_041900) do
 
   create_table "activities", force: :cascade do |t|
     t.string "action_type"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2019_04_11_022547) do
     t.integer "user_id"
     t.integer "book_id"
     t.integer "action_id"
+    t.string "event"
   end
 
   create_table "books", force: :cascade do |t|
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_04_11_022547) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
+    t.string "description"
   end
 
   create_table "categories", force: :cascade do |t|

@@ -21,7 +21,7 @@
         <% book = request.book %>
         <% user = request.user %>
         <tr>
-          <td><%= link_to user.name, user %></td>
+          <td><td><%= link_to gravatar_for(user, size: 50),user %> <%= link_to user.name, user %></td>
           <td><%= link_to book.title, book %></td>
           <td><%= request.created_at.to_date %></td>
           <% if request.approved? %>

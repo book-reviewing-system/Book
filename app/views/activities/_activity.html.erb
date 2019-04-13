@@ -1,32 +1,38 @@
-<% if activity.commented? %>
+    <% relationship = Relationship.find_by id: activity.action_id %>
+    <% comment = Comment.find_by id: activity.action_id %>
+   <% user_book = UserBook.find_by id: activity.action_id %>
+    <% review = Review.find_by id: activity.action_id %>
+<% if activity.commented? && !comment.nil?%>
   <li>
     <%= link_to activity.user.name, activity.user %>
     commented on
     <% comment = Comment.find_by id: activity.action_id %>
     <%= link_to comment.review.book.title, comment.review.book %>
   </li>
-<% elsif activity.marked? %>
+ <% end %> 
+<% if activity.marked? && !user_book.nil? && (user_book.favorite? || user_book.read? )  %>
   <li>
     <%= link_to activity.user.name, activity.user %>
     marked
-    <% user_book = UserBook.find_by id: activity.action_id %>
+   <% user_book = UserBook.find_by id: activity.action_id %>
     <%= link_to user_book.book.title, user_book.book %>
     as
     <% if user_book.favorite? %>
-      favorite
-    <% elsif user_book.read? %>
+      favorite  <% end %>
+    <% if user_book.read? %>
       read
     <% end %>
   </li>
-<% elsif activity.reviewed? %>
+  <% end %>
+<% if activity.reviewed? && !review.nil? %>
   <li>
     <%= link_to activity.user.name, activity.user %>
     reviewed on
-    <% review = Review.find_by id: activity.action_id %>s
+    <% review = Review.find_by id: activity.action_id %>
     <%= link_to review.book.title, review.book %>
   </li>  
 <% end %>
-<% if activity.follow? %>
+<% if activity.follow? && !relationship.nil?  %>
   <li>
     <% relationship = Relationship.find_by id: activity.action_id %>
     <% follower_user = User.find_by id: relationship.follower_id %>
