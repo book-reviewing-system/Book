@@ -1,29 +1,56 @@
 <p id="notice"><%= notice %></p>
 <div class="row">
-  <div class="col-sm-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>  
-    </section>
-    <section class="stats">
-        <%= render 'shared/stats' %>      </section>
-  </div>
-  <div class="col-sm-8">
-    <div>
-      <h2>Activities</h2>
-      <%= render @user.activities %>
+  <div id="pad-wrapper">
+    <div class="col-xs-6">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>Details</strong></div>
+        <div class="panel-body no-padding">
+            <div class="ibox-content no-padding border-left-right">
+              <div class="img-responsive"><%= gravatar_for @user %></div>
+            </div>
+            <div class="ibox-content profile-content">
+                <h3><strong><%= @user.name %></strong></h3>
+                <br>
+                <section class="stats">
+                  <%= render 'shared/stats' %>      
+                </section>
+            </div>
+        </div>
+        <div>
+          <h5><strong>About me</strong></h5>
+                <p1>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
+                veniam, quis nostrud exercitat.</p1>
+        </div>
+      </div>
     </div>
-      <h2>Favorites</h2>
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <td>Title</td>
-              <td>Author</td>
-            </thead>
-            <tbody>
-              <% @user.user_books.each do |user_book| %>
+      <div class="col-xs-6">
+        <div class="panel panel-default">
+        <div class="panel-heading"><strong>Activities</strong></div>
+        <div class="panel-body">
+            <div class="ibox-content">
+              <div class="feed-activity-list">
+                <%= render @user.activities %>
+              </div>
+            </div>  
+        </div><!-- feed-activity-list -->
+        </div><!--ibox-content -->
+      </div>
+  </div>
+  </div>
+  <div class= "row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>Favorites</strong>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <th>Title</th>
+                <th>Author</th>
+              </thead>
+              <tbody>
+                <% @user.user_books.each do |user_book| %>
                 <% if user_book.favorite? %>
                   <tr>
                     <% book = user_book.book %>
@@ -31,63 +58,75 @@
                     <td><%= link_to book.author, book %></td>
                   </tr>
                 <% end %>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-
-      <table class="table">
-        <h2>Reading history</h2>
-       
-          <thead>
-            <td>Title</td>
-            <td>Author</td>
-          </thead>
-          <% @user.user_books.each do |user_book| %>
-          <% if user_book.reading? %>
-          <tr>
-          <% book = user_book.book %>
-          <td><%= link_to book.title, book %></td>
-          <td><%= link_to book.author, book %></td>
-          </tr>
-        <% end %>
-        <% end %>
-        
-      </table>
-
-      <% if current_user?(@user) %>
-      <h2>Requested</h2>
+                <% end %>
+              </tbody>
+            </table>
+          </div> 
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class= "row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>Reading history</strong></div>
+        <div class="panel-body">
         <div class="table-responsive">
           <table class="table">
             <thead>
               <th>Title</th>
-              <th>Time</th>
-              <th>Status</th>
+              <th>Author</th>
             </thead>
-            <tbody>
-              <% if @user.requests.any? %>
-              <% @user.requests.each do |request| %>
-                <% book = request.book %>
-                <tr>
-                  <td><%= link_to book.title, book %></td>
-                  <td><%= request.created_at.to_date %></td>
-                  <% if request.approved? %>
-                    <td>Yes</td>
-                  <% elsif request.denied? %>
-                    <td>No</td>
-                  <% else %>
-                    <td>Waiting</td>
-                  <% end %>
-                  </td>
-                </tr>
-              <% end %>
-              <% end %>  
-            </tbody>
+            <% @user.user_books.each do |user_book| %>
+            <% if user_book.reading? %>
+              <tr>
+              <% book = user_book.book %>
+              <td><%= link_to book.title, book %></td>
+              <td><%= link_to book.author, book %></td>
+              </tr>
+            <% end %>
+            <% end %>
           </table>
         </div>
-      <% end %>
+        </div>
+      </div>
     </div>
+  </div>
+  <% if current_user?(@user) %>
+    <div class= "row">
+      <div class="col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong>Requested</strong></div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                <th>Title</th>
+                <th>Time</th>
+                <th>Status</th>
+                </thead>
+                <tbody>
+                  <% if @user.requests.any? %>
+                  <% @user.requests.each do |request| %>
+                    <% book = request.book %>
+                    <tr>
+                      <td><%= link_to book.title, book %></td>
+                      <td><%= request.created_at.to_date %></td>
+                      <% if request.approved? %><td>Yes</td>
+                      <% elsif request.denied? %><td>No</td>
+                      <% else %><td>Waiting</td>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                  <% end %>  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
  
-
-
-

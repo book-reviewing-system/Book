@@ -1,39 +1,63 @@
-<% provide(:title, @book.title) %>
-<div class="center">
-  <h7><%= @book.title %></h7>
-  <h4>by <%= @book.author %></h4>
-</div>
- <% if logged_in? %> 
-<%= link_to 'Add A Review', new_book_review_path(@book), method: :get %> 
-<div class="center">
-    <% @user_book = @book.user_books.find_by_user_id current_user.id %>
-    <% if @user_book %>   
-      <%= render "shared/update_favorite" %>      
-      <%= render "shared/update_read" %>
-      <%= render "shared/update_reading" %>
-    <% else %>
-    
-      <%= render "shared/create_favorite" %>
-      <%= render "shared/create_read" %>
-      <%= render "shared/create_reading" %>
-    <% end %>
+<% provide(:title, @book.title) %> 
+<div class="container">
+    <div class="card">
+      <div class="container-fliud">
+        <div class="wrapper row">
+          <div class="preview col-md-6">
+            <div class="preview-pic tab-content">
+              <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
+            </div>
+          </div>
+          <div class="details col-md-6">
+            <h7 class="product-title"><%= @book.title %></h7>
+            <h4 class="center">by <%= @book.author %></h4>
+            <div class="rating">
+              <div class="stars">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+              </div>
+              <span class="review-no">@@@@@</span>
+            </div>
+            <div class="left">
+              <h4>Category: <%= @book.category.name %></h4>
+              <h4>Description: <%= @book.description %></h4>
+              <h4>Number of pages: <%= @book.number_of_pages %></h4>
+              <h4>Published: <%= @book.published_date.to_date %></h4>  
+            </div>
+            <!--<p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>-->
+            <% if logged_in? %>
+            <div class="action">
+            <% @user_book = @book.user_books.find_by_user_id current_user.id %>
+              <button class="add-to-cart btn btn-default" type="button"><%= link_to 'Add A Review', new_book_review_path(@book), method: :get %> </button>
+              <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+              <% if @user_book %>   
+              <%= render "shared/update_favorite" %>      
+              <%= render "shared/update_read" %>
+              <%= render "shared/update_reading" %>
+              <% else %>
+              <%= render "shared/create_favorite" %>
+              <%= render "shared/create_read" %>
+              <%= render "shared/create_reading" %>
+              <% end %>
 
-    <% @request = @book.requests.find_by_user_id current_user.id %>
+              <% @request = @book.requests.find_by_user_id current_user.id %>
     <% if @request.present? %>
       <%= render "shared/destroy_request" %>
     <% else %>
       <%= render "shared/create_request" %>
     <% end %>
-   </div> 
-<% else %>
-  <%= link_to "Signin to review", login_path %>
-<% end %>
-<div class="left">
-  <h4>Category: <%= @book.category.name %></h4>
-  <h4>Description: <%= @book.description %></h4>
-  <h4>Number of pages: <%= @book.number_of_pages %></h4>
-  <h4>Published: <%= @book.published_date.to_date %></h4>  
-</div>
+            </div>
+            <% else %>
+            <%= link_to "Signin to review", login_path %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <h4>Reviews</h4>
 
 <ul class="users left">
@@ -41,10 +65,9 @@
     <li>
       <% user = review.user %>
       <%= link_to user.name, user %>
-      <h4>Rating : <%= review.rating %> </h4>
-      <h4>Comment : <%= review.comment %></h4>
-       at
-      <%= review.created_at.to_date %>    
+      <h3>Rating : <%= review.rating %> </h3>
+      <h3>Comment : <%= review.comment %></h3>
+      <h4>at  <%= review.created_at.to_datetime %></h4>
       <% if user == current_user %>
         <%= link_to "edit", edit_book_review_path(@book, review) %>
         <%= link_to "delete", book_review_path(@book, review), confirm: "Are you sure?",method: :delete        %>
@@ -61,4 +84,8 @@
     </li>
   <% end %>
 </ul>
+
+
+
+
 <p> <%= link_to ' Back', root_path %></p>

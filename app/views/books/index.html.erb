@@ -1,36 +1,55 @@
-<%= form_tag(books_path, method: :get) do %>
-<%= text_field_tag :term, params[:term] %>
-<%= collection_select :category, :id, Category.all.order('name ASC'), :id, :name,{include_blank: 'Select Category'} %>
-<%= submit_tag 'Search', name: nil %>
-<% end %>
-<h1> LIST BOOK </h1>
-<% if @books.blank? %>
-<h3> NO BOOKS </h3>
-<% end %>
+
+
 <div class="container">
+	<%= form_tag(books_path, method: :get) do %>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-12 p-0">
+		        <div class="form-control search-slt">
+		            <%= text_field_tag :term, params[:term] %>
+		        </div>   
+	    	</div>
+		    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+		        <div class="form-control search-slt">
+		            <%= collection_select :category, :id, Category.all.order('name ASC'), :id, :name,{include_blank: 'Select Category'} %>
+		        </div>
+		    </div>
+		    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+		        <div class="form-control search-slt">
+		            <%= submit_tag 'Search', name: nil %>
+		        </div>     
+		    </div>
+		</div>
+	<% end %>
+	<h1> LIST BOOK </h1>
+	<% if @books.blank? %>
+		<h3> NO BOOKS </h3>
+	<% end %>
 	
-	<div class="row">
 	<% if current_user && current_user.admin? %>
 		<p><%= link_to 'Add Book', new_book_path %></p>
+    <div class="row">
 		<% @books.each do |book| %>
 		<div class="col-sm-6 col-md-4">
 			<div class="test">
+				<p><%= book.image %></p>
 				<p><%= book.title %><%= "    ||    " %><%= book.author %></p>
 				<p1><%= link_to 'Edit   ', edit_book_path(book) %><%= link_to ' 	Destroy   ', book, method: :delete, data: { confirm: 'Are you sure?' } %><%= link_to '		Show', book %></p1>
 			</div>
 
 		</div>
 		<% end %>
+  </div>
 	<%else%>
+  <div class="row">
 	    <% @books.each do |book| %>
 			<div class="col-sm-6 col-md-4">
 				<div class="test">
-				<p><%= book.title %><%= "    ||    " %><%= book.author %></p> 
+					<p><%= book.image %></p>
+					<p><%= book.title %><%= "    ||    " %><%= book.author %></p> 
 				</div>
         		<p> <%= link_to 'Show', book %></p>
 			</div>
 		<% end %>
+  </div>
 	<% end %>
-	</div>
-
 </div>

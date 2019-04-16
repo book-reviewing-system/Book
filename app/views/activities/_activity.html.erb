@@ -3,37 +3,41 @@
    <% user_book = UserBook.find_by id: activity.action_id %>
     <% review = Review.find_by id: activity.action_id %>
 <% if activity.commented? && !comment.nil?%>
+  <h4>
   <li>
-    <%= link_to activity.user.name, activity.user %>
-    commented on
-    <% comment = Comment.find_by id: activity.action_id %>
-    <%= link_to comment.review.book.title, comment.review.book %>
+    <div class="activity-feed">
+      <div class="feed-item">
+        <%= link_to activity.user.name, activity.user %> commented on
+        <% comment = Comment.find_by id: activity.action_id %>
+        <%= link_to comment.review.book.title, comment.review.book %>
+        <div class="date"> At <%= comment.created_at %></div>
+        <div class="text">  <%= link_to comment.review.book.title, comment.review.book %></div>
+      </div>   
+    </div>
   </li>
- <% end %> 
+  </h4>
+<% end %> 
 <% if activity.marked? && !user_book.nil? && (user_book.favorite? || user_book.read? )  %>
-  <li>
-    <%= link_to activity.user.name, activity.user %>
-    marked
-   <% user_book = UserBook.find_by id: activity.action_id %>
-    <%= link_to user_book.book.title, user_book.book %>
-    as
-    <% if user_book.favorite? %>
-      favorite  <% end %>
+  <h4><li>
+    <%= link_to activity.user.name, activity.user %>  marked
+    <% user_book = UserBook.find_by id: activity.action_id %>
+    <%= link_to user_book.book.title, user_book.book %>as
+    <% if user_book.favorite? %>favorite  <% end %>
     <% if user_book.read? %>
       read
     <% end %>
-  </li>
+  </li></h4>
   <% end %>
 <% if activity.reviewed? && !review.nil? %>
-  <li>
+  <h4><li>
     <%= link_to activity.user.name, activity.user %>
     reviewed on
     <% review = Review.find_by id: activity.action_id %>
     <%= link_to review.book.title, review.book %>
-  </li>  
+  </li></h4>
 <% end %>
 <% if activity.follow? && !relationship.nil?  %>
-  <li>
+  <h4><li>
     <% relationship = Relationship.find_by id: activity.action_id %>
     <% follower_user = User.find_by id: relationship.follower_id %>
     <% followed_user = User.find_by id: relationship.followed_id %>
@@ -46,6 +50,6 @@
       is followed by
       <%= link_to follower_user.name, follower_user %>
     <% end %>
-  </li>
+  </li></h4>
 <% end %>
 
