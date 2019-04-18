@@ -19,6 +19,7 @@ end
 (1..9).each do 
   Book.create(description: "GOOD EXPERIENCE")
 end
+
 categories = ["IT", "Sport", "Novel"]
 its = ["Rails", "Git", "MySQL"]
 sports = ["Badminton", "Volleyball", "Football"]
