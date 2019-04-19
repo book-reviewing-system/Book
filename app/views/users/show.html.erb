@@ -1,41 +1,42 @@
 <p id="notice"><%= notice %></p>
-<div class="row">
-  <div id="pad-wrapper">
-    <div class="col-xs-6">
-      <div class="panel panel-default">
-        <div class="panel-heading"><strong>Details</strong></div>
-        <div class="panel-body no-padding">
-            <div class="ibox-content no-padding border-left-right">
-              <div class="img-responsive"><%= gravatar_for @user %></div>
-            </div>
-            <div class="ibox-content profile-content">
-                <h3><strong><%= @user.name %></strong></h3>
-                <br>
-                <section class="stats">
-                  <%= render 'shared/stats' %>      
-                </section>
-            </div>
+  <div class="row">
+    <div id="pad-wrapper">
+      <div class="col-xs-30">
+        <div class="ibox-content no-padding border-left-right">
+          <div class="img-responsive">
+            <%= gravatar_for @user %>
+            <strong><%= @user.name %></strong>
+          </div>
         </div>
-            </div>
-    </div>
-      <div class="col-xs-6">
-        <div class="panel panel-default">
-        <div class="panel-heading"><strong>Activities</strong></div>
-        <div class="panel-body">
-            <div class="ibox-content">
-              <div class="feed-activity-list">
-                <%= render @user.activities %>
-              </div>
-            </div>  
-        </div><!-- feed-activity-list -->
-        </div><!--ibox-content -->
       </div>
+    </div>
   </div>
+  <div>
+    <section class="stats">
+      <%= render 'shared/stats' %>      
+    </section>
+    <div class="col-md-8">
+              <%= render 'follow_form' if logged_in? %></div>
+            </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="panel panel-default">
+      <div class="panel-heading"><strong>Activities</strong></div>
+      <div class="panel-body">
+          <div class="ibox-content">
+            <div class="feed-activity-list">
+              <%= render @user.activities %>
+            </div>
+          </div>  
+      </div><!-- feed-activity-list -->
+      </div><!--ibox-content -->
+    </div>
   </div>
   <div class= "row">
     <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
-        <div class="panel-heading"><strong>Favorites</strong>
+        <div class="panel-heading"><strong>Favorites</strong></div>
         <div class="panel-body">
           <div class="table-responsive">
             <table class="table">

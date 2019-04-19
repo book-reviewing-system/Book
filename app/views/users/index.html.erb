@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <% if current_user && current_user.admin? %>
 <h1>Users</h1>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -15,7 +15,7 @@
       <tr>
         <td><%= link_to gravatar_for(user, size: 50),user %> <%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><span class="label label-warning"> <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %> </span></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Requests</h1>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>User</th>
@@ -20,7 +20,7 @@
         <% book = request.book %>
         <% user = request.user %>
         <tr>
-          <td><td><%= link_to gravatar_for(user, size: 50),user %> <%= link_to user.name, user %></td>
+          <td><%= link_to gravatar_for(user, size: 50),user %> <%= link_to user.name, user %></td>
           <td><%= link_to book.title, book %></td>
           <td><%= request.created_at.to_date %></td>
           <% if request.approved? %>
@@ -30,8 +30,8 @@
           <% else %>
             <td>Waiting   </td>
           <% end %>
-          </td>
-  <td><%= link_to 'Edit', edit_request_path(request) %></td>
+         
+  <td><span class="label label-warning""><%= link_to 'Edit', edit_request_path(request) %></span></td>
         </tr>    
     <% end %>
    <% end %>

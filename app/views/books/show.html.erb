@@ -3,9 +3,9 @@
     <div class="card">
       <div class="container-fliud">
         <div class="wrapper row">
-          <div class="preview col-md-6">
+          <div class="preview col-md-4">
             <div class="preview-pic tab-content">
-              <div class="tab-pane active" ><img src= <%= @book.image %> /></div>
+              <div class="tab-pane active" ><img src= <%= @book.image %> style="width:250px;height:250px;" ></div>
             </div>
           </div>
           <div class="details col-md-6">
@@ -33,11 +33,11 @@
               <% end %>
 
               <% @request = @book.requests.find_by_user_id current_user.id %>
-    <% if @request.present? %>
-      <%= render "shared/destroy_request" %>
-    <% else %>
-      <%= render "shared/create_request" %>
-    <% end %>
+              <% if @request.present? %>
+                <%= render "shared/destroy_request" %>
+              <% else %>
+                <%= render "shared/create_request" %>
+              <% end %>
             </div>
             <% else %>
             <%= link_to "Signin to review", login_path %>
@@ -65,6 +65,25 @@
             </div>
             <div class="panel-body ">
               <h4>Rating : <%= review.rating %></h4>
+              <div class="form-group" id="rating-ability-wrapper">
+                <label class="control-label" for="rating">
+                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="1" data- id="rating-star-1">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="2" id="rating-star-2">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="3" id="rating-star-3">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="4" id="rating-star-4">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="5" id="rating-star-5">
+                    <i class="fa fa-star" aria-hidden="true" ></i>
+                </button><br>
+            </div>
+                 
               <h4>Comment : <%= review.comment %></h4>
               <h6>at  <%= review.created_at.to_datetime %></h6>
             </div>
@@ -90,3 +109,26 @@
 
 <p> <%= link_to ' Back', root_path %></p>
 
+<script>
+    
+  jQuery(document).ready(function($){
+    
+  for (i = 1; i <= review.rating ; ++i) {
+  $("#rating-star-"+i).toggleClass('btn-warning');
+  $("#rating-star-"+i).toggleClass('btn-default');
+  }
+  
+  for (ix = 1; ix <=  review.rating ; ++ix) {
+  $("#rating-star-"+ix).toggleClass('btn-warning');
+  $("#rating-star-"+ix).toggleClass('btn-default');
+  }
+  
+  );    
+</script>
+
+<script> 
+  $(document).ready(function(){
+    var value= $(this).data("attr");
+    $(" review.rating").val(value);
+  });
+</script> 
