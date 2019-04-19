@@ -2,7 +2,7 @@
   <% if @user_book %>
     <%= render 'shared/update_reading' %>
   <% else %>
-    <%= link_to "Reading", book_user_books_path(@book, id: @book.id, 
+    <%= link_to "Reading", book_user_books_path(@book, 
       reading: 1), method: :post, remote: true, class: "btn" %>
   <% end %>
 </div>

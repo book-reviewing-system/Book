@@ -2,7 +2,7 @@
   <% if @user_book %>
     <%= render 'shared/update_favorite' %>
   <% else %>
-    <%= link_to "Favorite", book_user_books_path(@book, id: @book.id, 
+    <%= link_to "Favorite", book_user_books_path(@book, 
       favorite: 1), method: :post, remote: true, class: "btn" %>
   <% end %>
 </div>
